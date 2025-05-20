@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join AutoEnthusiasts</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #28a745;
+            --secondary-color: #f8f9fa;
+            --accent-color: #ffc107;
+            --text-dark: #343a40;
+            --text-light: #6c757d;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .card {
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            border: none;
+            overflow: hidden;
+        }
+        
+        .card-header {
+            background: linear-gradient(135deg, var(--primary-color), #218838);
+            padding: 1.5rem;
+        }
+        
+        .form-control {
+            padding: 12px 15px;
+            border-radius: 8px;
+            border: 1px solid #ced4da;
+            transition: all 0.3s;
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.25rem rgba(40, 167, 69, 0.25);
+        }
+        
+        .btn-success {
+            background-color: var(--primary-color);
+            border: none;
+            padding: 12px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            transition: all 0.3s;
+        }
+        
+        .btn-success:hover {
+            background-color: #218838;
+            transform: translateY(-2px);
+        }
+        
+        .password-strength {
+            height: 5px;
+            margin-top: 5px;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+        
+        .form-check-input:checked {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+        
+        .interest-badge {
+            background-color: var(--secondary-color);
+            color: var(--text-dark);
+            padding: 8px 12px;
+            border-radius: 20px;
+            margin-right: 8px;
+            margin-bottom: 8px;
+            display: inline-block;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 1px solid #dee2e6;
+        }
+        
+        .interest-badge:hover {
+            transform: scale(1.05);
+        }
+        
+        .interest-badge.active {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+        
+        .progress-bar {
+            background-color: var(--primary-color);
+        }
+        
+        .terms-link {
+            color: var(--primary-color);
+            font-weight: 500;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+        
+        .form-text {
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+        
+        .input-group-text {
+            background-color: #e9ecef;
+            border-radius: 8px 0 0 8px;
+        }
+        
+        /* Animation for form elements */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .form-group {
+            animation: fadeIn 0.5s ease-out forwards;
+            opacity: 0;
+        }
+        
+        .form-group:nth-child(1) { animation-delay: 0.1s; }
+        .form-group:nth-child(2) { animation-delay: 0.2s; }
+        .form-group:nth-child(3) { animation-delay: 0.3s; }
+        .form-group:nth-child(4) { animation-delay: 0.4s; }
+        .form-group:nth-child(5) { animation-delay: 0.5s; }
+        .form-group:nth-child(6) { animation-delay: 0.6s; }
+        .form-group:nth-child(7) { animation-delay: 0.7s; }
+    </style>
+</head>
+<body>
+    <main class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6">
+                <div class="card">
+                    <div class="card-header text-white text-center">
+                        <h4 class="mb-0"><i class="fas fa-car me-2"></i>Join AutoEnthusiasts</h4>
+                        <p class="mb-0 mt-2">Connect with fellow vehicle lovers</p>
+                    </div>
+                    <div class="card-body">
+                        <form id="registerForm" action="register.php" method="post" novalidate>
+                            <div class="row form-group">
+                                <div class="col-md-6 mb-3">
+                                    <label for="firstName" class="form-label"><b>First Name</b></label>
+                                    <input type="text" class="form-control" id="firstName" name="firstName" required>
+                                    <div class="invalid-feedback">Please enter your first name</div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="lastName" class="form-label"><b>Last Name</b></label>
+                                    <input type="text" class="form-control" id="lastName" name="lastName" required>
+                                    <div class="invalid-feedback">Please enter your last name</div>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3 form-group">
+                                <label for="username" class="form-label"><b>Username</b></label>
+                                <div class="input-group">
+                                    <span class="input-group-text">@</span>
+                                    <input type="text" class="form-control" id="username" name="username" required>
+                                </div>
+                                <div class="form-text">This will be your display name on the forum</div>
+                                <div class="invalid-feedback">Please choose a username</div>
+                            </div>
+                            
+                            <div class="mb-3 form-group">
+                                <label for="email" class="form-label"><b>Email address</b></label>
+                                <input type="email" class="form-control" id="email" name="email" required>
+                                <div class="invalid-feedback">Please enter a valid email address</div>
+                            </div>
+                            
+                            <div class="mb-3 form-group">
+                                <label for="password" class="form-label"><b>Password</b></label>
+                                <input type="password" class="form-control" id="password" name="password" required 
+                                       pattern="^(?=.*[A-Za-z])(?=.*\d).{8,}$">
+                                <div class="d-flex align-items-center mt-2">
+                                    <div class="password-strength flex-grow-1 me-2" id="passwordStrength"></div>
+                                    <small id="passwordStrengthText" class="text-muted">Weak</small>
+                                </div>
+                                <div class="form-text">Minimum 8 characters with at least one number and one letter</div>
+                                <div class="invalid-feedback">Password must be at least 8 characters with one letter and one number</div>
+                            </div>
+                            
+                            <div class="mb-3 form-group">
+                                <label for="confirmPassword" class="form-label"><b>Confirm Password</b></label>
+                                <input type="password" class="form-control" id="confirmPassword" required>
+                                <div class="invalid-feedback">Passwords don't match</div>
+                            </div>
+                            
+                            <div class="mb-3 form-group">
+                                <label class="form-label">Vehicle Interests (select at least one)</label>
+                                <div class="d-flex flex-wrap mt-2" id="interestsContainer">
+                                    <span class="interest-badge" data-interest="cars">
+                                        <i class="fas fa-car me-1"></i> Cars
+                                    </span>
+                                    <span class="interest-badge" data-interest="bikes">
+                                        <i class="fas fa-motorcycle me-1"></i> Motorcycles
+                                    </span>
+                                    <span class="interest-badge" data-interest="trucks">
+                                        <i class="fas fa-truck-pickup me-1"></i> Trucks & SUVs
+                                    </span>
+                                    <span class="interest-badge" data-interest="classic">
+                                        <i class="fas fa-history me-1"></i> Classic Vehicles
+                                    </span>
+                                    <span class="interest-badge" data-interest="ev">
+                                        <i class="fas fa-bolt me-1"></i> Electric Vehicles
+                                    </span>
+                                </div>
+                                <input type="hidden" id="selectedInterests" name="selectedInterests" required>
+                                <div class="invalid-feedback">Please select at least one interest</div>
+                            </div>
+                            
+                            <div class="mb-3 form-check form-group">
+                                <input type="checkbox" class="form-check-input" id="termsCheck" required>
+                                <label class="form-check-label" for="termsCheck">
+                                    I agree to the <span class="terms-link" data-bs-toggle="modal" data-bs-target="#termsModal">Terms and Conditions</span>
+                                </label>
+                                <div class="invalid-feedback">You must agree to the terms</div>
+                            </div>
+
+                            <div id="formError" class="alert alert-danger d-none" role="alert"></div>
+                            
+                            <button type="submit" class="btn btn-success w-100 mt-4 form-group">
+                                <i class="fas fa-user-plus me-2"></i>Create Account
+                            </button>
+                        </form>
+                    </div>
+                    <div class="card-footer text-center">
+                        Already have an account? <a href="login.html" class="text-decoration-none fw-bold" style="color: var(--primary-color);">Login here</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Terms Modal -->
+    <div class="modal fade" id="termsModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-light">
+                    <h5 class="modal-title"><i class="fas fa-file-contract me-2"></i>Terms and Conditions</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-info">
+                        <i class="fas fa-info-circle me-2"></i>Please read these terms carefully before registering.
+                    </div>
+                    <h6 class="fw-bold">AutoEnthusiasts Community Guidelines</h6>
+                    <ol class="mb-4">
+                        <li class="mb-2"><strong>Respect:</strong> Treat all members with courtesy and respect.</li>
+                        <li class="mb-2"><strong>Relevance:</strong> Keep discussions focused on automotive topics.</li>
+                        <li class="mb-2"><strong>Authenticity:</strong> No spam, advertising, or self-promotion.</li>
+                        <li class="mb-2"><strong>Safety:</strong> Never share dangerous or illegal modification advice.</li>
+                        <li class="mb-2"><strong>Originality:</strong> Share your own experiences and give credit when referencing others.</li>
+                    </ol>
+                    <p>By registering, you agree to abide by these guidelines and understand that violations may result in content removal or account suspension.</p>
+                    <div class="form-check mt-4">
+                        <input class="form-check-input" type="checkbox" id="modalTermsCheck">
+                        <label class="form-check-label" for="modalTermsCheck">
+                            I have read and agree to these terms
+                        </label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-success" id="acceptTermsBtn" disabled>Accept Terms</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="modal fade" id="successModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-success text-white">
+                    <h5 class="modal-title"><i class="fas fa-check-circle me-2"></i>Registration Successful!</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center py-4">
+                    <i class="fas fa-check-circle text-success mb-3" style="font-size: 3rem;"></i>
+                    <h4>Welcome to AutoEnthusiasts!</h4>
+                    <p class="mb-4">Your account has been created successfully. We've sent a confirmation email to <strong id="registeredEmail"></strong>.</p>
+                    <button type="button" class="btn btn-success w-100" id="loginBtn">LOGIN Your Account</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Password strength indicator
+            const passwordInput = document.getElementById('password');
+            const passwordStrength = document.getElementById('passwordStrength');
+            const passwordStrengthText = document.getElementById('passwordStrengthText');
+            
+            passwordInput.addEventListener('input', function() {
+                const password = this.value;
+                let strength = 0;
+                
+                // Length check
+                if (password.length >= 8) strength += 1;
+                if (password.length >= 12) strength += 1;
+                
+                // Character variety
+                if (/[A-Z]/.test(password)) strength += 1;
+                if (/[0-9]/.test(password)) strength += 1;
+                if (/[^A-Za-z0-9]/.test(password)) strength += 1;
+                
+                // Update UI
+                passwordStrength.style.width = (strength * 20) + '%';
+                
+                switch(strength) {
+                    case 0:
+                    case 1:
+                        passwordStrength.style.backgroundColor = '#dc3545';
+                        passwordStrengthText.textContent = 'Weak';
+                        passwordStrengthText.style.color = '#dc3545';
+                        break;
+                    case 2:
+                        passwordStrength.style.backgroundColor = '#fd7e14';
+                        passwordStrengthText.textContent = 'Fair';
+                        passwordStrengthText.style.color = '#fd7e14';
+                        break;
+                    case 3:
+                        passwordStrength.style.backgroundColor = '#ffc107';
+                        passwordStrengthText.textContent = 'Good';
+                        passwordStrengthText.style.color = '#ffc107';
+                        break;
+                    case 4:
+                        passwordStrength.style.backgroundColor = '#28a745';
+                        passwordStrengthText.textContent = 'Strong';
+                        passwordStrengthText.style.color = '#28a745';
+                        break;
+                    case 5:
+                        passwordStrength.style.backgroundColor = '#20c997';
+                        passwordStrengthText.textContent = 'Very Strong';
+                        passwordStrengthText.style.color = '#20c997';
+                        break;
+                }
+            });
+            
+            // Password confirmation check
+            const confirmPasswordInput = document.getElementById('confirmPassword');
+            confirmPasswordInput.addEventListener('input', function() {
+                if (this.value !== passwordInput.value) {
+                    this.setCustomValidity("Passwords don't match");
+                    this.classList.add('is-invalid');
+                } else {
+                    this.setCustomValidity('');
+                    this.classList.remove('is-invalid');
+                }
+            });
+            
+            // Interest badges selection
+            const interestBadges = document.querySelectorAll('.interest-badge');
+            const selectedInterestsInput = document.getElementById('selectedInterests');
+            let selectedInterests = [];
+            
+            interestBadges.forEach(badge => {
+                badge.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    const interest = this.getAttribute('data-interest');
+                    
+                    if (this.classList.contains('active')) {
+                        if (!selectedInterests.includes(interest)) {
+                            selectedInterests.push(interest);
+                        }
+                    } else {
+                        selectedInterests = selectedInterests.filter(item => item !== interest);
+                    }
+                    
+                    selectedInterestsInput.value = selectedInterests.join(',');
+                    
+                    // Validate at least one interest is selected
+                    if (selectedInterests.length > 0) {
+                        selectedInterestsInput.setCustomValidity('');
+                    } else {
+                        selectedInterestsInput.setCustomValidity('Please select at least one interest');
+                    }
+                });
+            });
+            
+            // Terms modal checkbox and acceptance
+            const modalTermsCheck = document.getElementById('modalTermsCheck');
+            const acceptTermsBtn = document.getElementById('acceptTermsBtn');
+            const termsCheck = document.getElementById('termsCheck');
+            const form = document.getElementById('registerForm');
+            
+            modalTermsCheck.addEventListener('change', function() {
+                acceptTermsBtn.disabled = !this.checked;
+            });
+            
+            acceptTermsBtn.addEventListener('click', function() {
+                termsCheck.checked = true;
+                termsCheck.dispatchEvent(new Event('change'));
+                const modal = bootstrap.Modal.getInstance(document.getElementById('termsModal'));
+                modal.hide();
+                form.classList.add('was-validated');
+            });
+            
+            // Main terms checkbox validation
+            termsCheck.addEventListener('change', function() {
+                if (this.checked) {
+                    this.setCustomValidity('');
+                } else {
+                    this.setCustomValidity('You must agree to the terms');
+                }
+            });
+            
+            // Form validation
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
+                event.stopPropagation();
+                
+                // Manually validate all required fields
+                if (selectedInterests.length === 0) {
+                    selectedInterestsInput.setCustomValidity('Please select at least one interest');
+                } else {
+                    selectedInterestsInput.setCustomValidity('');
+                }
+                
+                if (!termsCheck.checked) {
+                    termsCheck.setCustomValidity('You must agree to the terms');
+                } else {
+                    termsCheck.setCustomValidity('');
+                }
+                
+                if (form.checkValidity()) {
+                    const formData = new FormData(form);
+                    const errorDiv =document.getElementById('formError');
+                    fetch('register.php', {
+                        method: 'POST',
+                        body: formData
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        
+                        if (data.success) {
+                            document.getElementById('registeredEmail').textContent = document.getElementById('email').value;
+                            const successModal = new bootstrap.Modal(document.getElementById('successModal'));
+                            successModal.show();
+                            form.reset();
+                            form.classList.remove('was-validated');
+                            errorDiv.classList.add('d-none');
+                        } else if (data.error) {
+                            errorDiv.textContent = 'Registration failed: ' + data.error;
+                            errorDiv.classList.remove('d-none');
+                        } else {
+                            errorDiv.textContent = 'Unknown response from server.';
+                            errorDiv.classList.remove('d-none');
+                        }
+                    })
+                    .catch(error => {
+                        alert('Error: ' + error);
+                    });
+                }
+                
+                form.classList.add('was-validated');
+            }, false);
+            
+            // Login button handler
+            document.getElementById('loginBtn').addEventListener('click', function() {
+                window.location.href = 'login.html';
+            });
+            
+            // Add animation delay to form groups
+            const formGroups = document.querySelectorAll('.form-group');
+            formGroups.forEach((group, index) => {
+                group.style.animationDelay = `${0.1 + (index * 0.1)}s`;
+            });
+        });
+    </script>
+</body>
+</html>

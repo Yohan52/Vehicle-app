@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | AutoEnthusiasts</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #28a745;
+            --secondary-color: #f8f9fa;
+            --accent-color: #ffc107;
+            --text-dark: #343a40;
+            --text-light: #6c757d;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        
+        .login-container {
+            max-width: 450px;
+            margin: auto;
+        }
+        
+        .login-card {
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        
+        .login-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card-header {
+            background: linear-gradient(135deg, var(--primary-color), #218838);
+            padding: 1.75rem;
+            text-align: center;
+        }
+        
+        .card-header h4 {
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        
+        .card-body {
+            padding: 2rem;
+        }
+        
+        .form-control {
+            padding: 12px 15px;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+            transition: all 0.3s;
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.25rem rgba(40, 167, 69, 0.15);
+        }
+        
+        .btn-login {
+            background-color: var(--primary-color);
+            border: none;
+            padding: 12px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+        
+        .btn-login:hover {
+            background-color: #218838;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(40, 167, 69, 0.25);
+        }
+        
+        .form-check-input:checked {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+        
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 1.5rem 0;
+        }
+        
+        .divider::before, .divider::after {
+            content: "";
+            flex: 1;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .divider-text {
+            padding: 0 1rem;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+        
+        .social-login .btn {
+            padding: 10px;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        .social-login .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-google {
+            background-color: #fff;
+            color: #757575;
+            border: 1px solid #ddd;
+        }
+        
+        .btn-google:hover {
+            background-color: #f9f9f9;
+        }
+        
+        .btn-facebook {
+            background-color: #3b5998;
+            color: white;
+        }
+        
+        .btn-facebook:hover {
+            background-color: #344e86;
+        }
+        
+        .forgot-password {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        
+        .forgot-password:hover {
+            text-decoration: underline;
+            color: #218838;
+        }
+        
+        .register-link {
+            color: var(--primary-color);
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        
+        .register-link:hover {
+            text-decoration: underline;
+            color: #218838;
+        }
+        
+        .password-toggle {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: var(--text-light);
+        }
+        
+        .password-toggle:hover {
+            color: var(--primary-color);
+        }
+        
+        .password-container {
+            position: relative;
+        }
+        
+        /* Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .login-card {
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+    </style>
+</head>
+<body>
+    <main class="container my-auto py-5">
+        <div class="row justify-content-center">
+            <div class="col-md-10 col-lg-8">
+                <div class="login-container">
+                    <div class="login-card card">
+                        <div class="card-header text-white">
+                            <h4 class="mb-0"><i class="fas fa-car me-2"></i>Welcome Back to AutoEnthusiasts</h4>
+                            <p class="mb-0 mt-2">Connect with fellow vehicle enthusiasts</p>
+                        </div>
+                        <div class="card-body">
+                            <form id="loginForm" action="login.php" method="post" novalidate>
+                                <div class="mb-4">
+                                    <label for="loginEmail" class="form-label"><b>Email address</b></label>
+                                    <input type="email" class="form-control" id="loginEmail" name="loginEmail" required placeholder="Enter your email">
+                                    <div class="invalid-feedback">Please enter a valid email address</div>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <label for="loginPassword" class="form-label"><b>Password</b></label>
+                                    <div class="password-container">
+                                        <input type="password" class="form-control" id="loginPassword" name="password" required placeholder="Enter your password">
+                                        <span class="password-toggle" id="togglePassword">
+                                            <i class="far fa-eye"></i>
+                                        </span>
+                                    </div>
+                                    <div class="invalid-feedback">Please enter your password</div>
+                                </div>
+                                
+                                <div class="d-flex justify-content-between align-items-center mb-4">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="rememberMe">
+                                        <label class="form-check-label" for="rememberMe">Remember me</label>
+                                    </div>
+                                    <a href="forgot-password.html" class="forgot-password">Forgot password?</a>
+                                </div>
+
+                                <div id="loginError" class="alert alert-danger d-none" role="alert"></div>
+                                
+                                <button type="submit" class="btn btn-login btn-primary w-100 mb-3">
+                                    <i class="fas fa-sign-in-alt me-2"></i>Login
+                                </button>
+                                
+                                <div class="divider">
+                                    <span class="divider-text">OR CONTINUE WITH</span>
+                                </div>
+                                
+                                <div class="social-login d-flex gap-2 mb-4">
+                                    <button type="button" class="btn btn-google flex-grow-1">
+                                        <i class="fab fa-google me-2"></i>Google
+                                    </button>
+                                    <button type="button" class="btn btn-facebook flex-grow-1">
+                                        <i class="fab fa-facebook-f me-2"></i>Facebook
+                                    </button>
+                                </div>
+                                
+                                <div class="text-center pt-2">
+                                    Don't have an account? <a href="register.html" class="register-link">Register here</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const errorDiv = document.getElementById('loginError');
+            // Password toggle functionality
+            const togglePassword = document.querySelector('#togglePassword');
+            const password = document.querySelector('#loginPassword');
+            
+            togglePassword.addEventListener('click', function() {
+                const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+                password.setAttribute('type', type);
+                this.innerHTML = type === 'password' ? '<i class="far fa-eye"></i>' : '<i class="far fa-eye-slash"></i>';
+            });
+
+            document.getElementById('loginEmail').addEventListener('input', () => {
+                errorDiv.classList.add('d-none');
+            })
+            document.getElementById('loginPassword').addEventListener('input', () => {
+                errorDiv.classList.add('d-none');
+            })
+
+            
+            // Form validation
+            const form = document.getElementById('loginForm');
+            
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
+                event.stopPropagation();
+                
+                if (form.checkValidity()) {
+                    const formData = new FormData(form);
+                    const submitButton = form.querySelector('button[type="submit"]');
+                    const originalText = submitButton.innerHTML;
+                      
+                    // Show loading state
+                    submitButton.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Logging in...';
+                    submitButton.disabled = true;
+                    
+                    fetch('login.php',{
+                        method:'POST',
+                        body:formData
+                    })
+                    .then(res => res.text())
+                    .then(data => {
+                        if(data.trim() === 'success'){
+                            window.location.href = 'index.php';
+                        } else {
+                            errorDiv.textContent = data;
+                            errorDiv.classList.remove('d-none');
+                            submitButton.innerHTML = originalText;
+                            submitButton.disabled = false;
+                        }
+                    })
+
+                    .catch(err => {
+                        alert('Error: '+err);
+                        submitButton.innerHTML = originalText;
+                        submitButton.disabled = false;
+                    });                   
+                }
+                
+                form.classList.add('was-validated');
+            }, false);
+        });
+    </script>
+</body>
+</html>

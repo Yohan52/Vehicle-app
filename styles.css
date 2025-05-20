@@ -1,0 +1,93 @@
+/* Custom styles for AutoEnthusiasts forum */
+
+/* General Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+}
+
+.hero-section {
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                url('images/photo-1492144534655-ae79c964c9d7.avif');
+    background-size: cover;
+    background-position: center;
+    padding: 100px 0;
+    margin-bottom: 30px;
+}
+
+/* Category Cards */
+.category-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: none;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.category-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.category-card .card-img-top {
+    height: 150px;
+    object-fit: cover;
+}
+
+/* Thread List Items */
+.list-group-item {
+    transition: background-color 0.2s ease;
+    margin-bottom: 10px;
+    border-radius: 5px !important;
+}
+
+.list-group-item:hover {
+    background-color: #f8f9fa;
+}
+
+/* Avatar Styles */
+.rounded-circle {
+    object-fit: cover;
+}
+
+/* Custom Button Styles */
+.btn-outline-primary {
+    border-width: 2px;
+}
+
+/* Footer Styles */
+footer {
+    margin-top: 50px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .hero-section {
+        padding: 60px 0;
+    }
+    
+    .hero-section h1 {
+        font-size: 2rem;
+    }
+    
+    .category-card {
+        margin-bottom: 20px;
+    }
+}
+
+/* Form Styles */
+.form-control:focus {
+    border-color: #0d6efd;
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+/* Custom Badges */
+.badge {
+    font-weight: 500;
+    padding: 5px 10px;
+}
+
+/* Thread View Styles */
+.border-start {
+    border-left: 3px solid #dee2e6 !important;
+    padding-left: 15px;
+}
